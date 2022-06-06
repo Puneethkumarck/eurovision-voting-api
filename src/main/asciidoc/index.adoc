@@ -1,0 +1,21 @@
+= Spring REST Docs for VotingAPI
+
+This is an example output for a service running at http://localhost:8080/votes
+
+.CreateVote Request
+include::{snippets}/createVote/http-request.adoc[]
+
+.CreateVote Response
+include::{snippets}/createVote/http-response.adoc[]
+
+.GetTopThreeCountryWithMaxiumVote Request
+include::{snippets}/getTopThreeCountryWithMaxiumVote/http-request.adoc[]
+
+.GetTopThreeCountryWithMaxiumVote Response
+include::{snippets}/getTopThreeCountryWithMaxiumVote/http-response.adoc[]
+
+.GetTopThreeFavSongs Request
+include::{snippets}/getTopThreeFavSongs/http-request.adoc[]
+
+.GetTopThreeFavSongs Response
+include::{snippets}/getTopThreeFavSongs/http-response.adoc[]
