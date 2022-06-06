@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "fe4032c6-8fd3-4de5-946a-8facb2ad75d7",
+		"name": "Eurovision_Voting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "postvote",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"countryFrom\":\"Netherlands\",\n    \"votedFor\":\"Belgium\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/votes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTopThreeCountriesWithMaximumvotes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/votes/2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votes",
+						"2022"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getThreeFavSongs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/votes/2022/Romania",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"votes",
+						"2022",
+						"Romania"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
