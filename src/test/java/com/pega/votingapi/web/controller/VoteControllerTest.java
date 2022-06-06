@@ -2,7 +2,6 @@ package com.pega.votingapi.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pega.votingapi.entity.Vote;
-import com.pega.votingapi.model.TopThreeResponse;
 import com.pega.votingapi.model.VoteRequest;
 import com.pega.votingapi.service.VotingService;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import java.util.Map;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -38,11 +38,10 @@ class VoteControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private final Vote vote =
-            Vote.builder().countryFrom("Netherlands").votedFor("Belgium").build();
+    private final Vote vote = Vote.builder().countryFrom("Netherlands").votedFor("Belgium").build();
 
-    private final TopThreeResponse topThreeResponse =
-            TopThreeResponse.of("Germany","Italy","France");
+    private final Map<String,String> topThreeResponse = Map.of("first","Germany","Second",
+            "Italy","third","France");
 
     @Test
     void createVote() throws Exception {

@@ -1,8 +1,8 @@
 package com.pega.votingapi.service;
 
 import com.pega.votingapi.entity.Vote;
-import com.pega.votingapi.model.TopThreeResponse;
 import com.pega.votingapi.model.VoteRequest;
+import java.util.Map;
 
 public interface VotingService {
 
@@ -18,7 +18,7 @@ public interface VotingService {
      * @param year String
      * @return TopThreeResponse
      */
-    TopThreeResponse retrieveTopThreeCountryWithMaximumVotes(String year);
+    Map<String,String> retrieveTopThreeCountryWithMaximumVotes(String year);
 
     /**
      *  Retrieves Top three Fav songs for given country and year
@@ -26,6 +26,6 @@ public interface VotingService {
      * @param country String
      * @return TopThreeResponse
      */
-    TopThreeResponse retrieveTopThreeFavSongs(String year,String country);
+    Map<String,String> retrieveTopThreeFavSongs(String year, String country);
 
 }

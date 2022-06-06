@@ -1,7 +1,6 @@
 package com.pega.votingapi.web.controller;
 
 import com.pega.votingapi.entity.Vote;
-import com.pega.votingapi.model.TopThreeResponse;
 import com.pega.votingapi.model.VoteRequest;
 import com.pega.votingapi.service.VotingService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import java.util.Map;
 
 
 @RestController
@@ -28,8 +28,8 @@ public class VoteController {
     }
 
     @GetMapping(value = "/{year}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TopThreeResponse> getTopThreeVotes(@PathVariable String year){
-        TopThreeResponse topThreeVoteResponse = voteService.retrieveTopThreeCountryWithMaximumVotes(year);
+    public ResponseEntity<Map<String,String>> getTopThreeVotes(@PathVariable String year){
+        Map<String,String>  topThreeVoteResponse = voteService.retrieveTopThreeCountryWithMaximumVotes(year);
         if(ObjectUtils.isEmpty(topThreeVoteResponse))
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, String.format(TOP_THREE_COUNTRY_FOR_GIVEN_YEAR_NOT_FOUND, year));
@@ -37,8 +37,8 @@ public class VoteController {
     }
 
     @GetMapping(value = "/{year}/{country}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TopThreeResponse> getTopThreeFavSongs(@PathVariable String year, @PathVariable String country){
-        TopThreeResponse topThreeVoteResponse = voteService.retrieveTopThreeFavSongs(year,country);
+    public ResponseEntity<Map<String,String>> getTopThreeFavSongs(@PathVariable String year, @PathVariable String country){
+        Map<String,String> topThreeVoteResponse = voteService.retrieveTopThreeFavSongs(year,country);
         if(ObjectUtils.isEmpty(topThreeVoteResponse))
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, String.format(TOP_THREE_FAV_SONGS_FOR_GIVEN_YEAR_AND_COUNTRY_NOT_FOUND, year,country));

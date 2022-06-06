@@ -1,15 +1,13 @@
 package com.pega.votingapi.service;
 
 import com.pega.votingapi.entity.Vote;
-import com.pega.votingapi.model.TopThreeResponse;
 import com.pega.votingapi.model.VoteRequest;
 import com.pega.votingapi.persistence.VoteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -21,6 +19,8 @@ public class VotingServiceImpl implements VotingService{
     public VotingServiceImpl(VoteRepository voteRepository) {
         this.voteRepository = voteRepository;
     }
+
+    static String[] topThree = {"first","second","third"};
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -34,9 +34,9 @@ public class VotingServiceImpl implements VotingService{
 
 
     @Override
-    public TopThreeResponse retrieveTopThreeCountryWithMaximumVotes(String year) {
+    public Map<String,String> retrieveTopThreeCountryWithMaximumVotes(String year) {
         Optional<List<String>> response = voteRepository.findTopThreeVotes(year);
-        TopThreeResponse topThreeVoteResponse = null;
+        Map<String,String> topThreeVoteResponse = null;
         if (response.isPresent()) {
             topThreeVoteResponse = buildResponse(response.get());
         }
@@ -45,9 +45,9 @@ public class VotingServiceImpl implements VotingService{
 
 
     @Override
-    public TopThreeResponse retrieveTopThreeFavSongs(String year,String country){
+    public Map<String,String> retrieveTopThreeFavSongs(String year,String country){
         Optional<List<String>> response = voteRepository.findTopThreeFavSongs(year,country);
-        TopThreeResponse topThreeVoteResponse = null;
+        Map<String,String> topThreeVoteResponse = null;
         if (response.isPresent()) {
             topThreeVoteResponse = buildResponse(response.get());
         }
@@ -55,25 +55,13 @@ public class VotingServiceImpl implements VotingService{
     }
 
 
-    /**
-     * @param responseList List<String>
-     * @return TopThreeResponse
-     */
-    TopThreeResponse buildResponse(List<String> responseList){
-        TopThreeResponse topThreeVoteResponse = new TopThreeResponse();
-        if (responseList.size() >= 3) {
-            topThreeVoteResponse.setFirst(responseList.get(0));
-            topThreeVoteResponse.setSecond(responseList.get(1));
-            topThreeVoteResponse.setThird(responseList.get(2));
-        } else if ( responseList.size()>= 2) {
-            topThreeVoteResponse.setFirst(responseList.get(0));
-            topThreeVoteResponse.setSecond(responseList.get(1));
-        } else if ( responseList.size()>= 1){
-            topThreeVoteResponse.setFirst(responseList.get(0));
-        } else{
-            topThreeVoteResponse=null;
+
+    Map<String,String> buildResponse(List<String> responseList){
+        Map<String,String> responseMap = new HashMap<>();
+        for(int i=0;i<responseList.size();i++){
+            responseMap.put(topThree[i],responseList.get(i));
         }
-        return topThreeVoteResponse;
+        return responseMap;
     }
 }
 
