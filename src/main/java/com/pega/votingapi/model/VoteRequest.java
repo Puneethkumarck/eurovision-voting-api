@@ -3,17 +3,17 @@ package com.pega.votingapi.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 public class VoteRequest {
 
-    @NonNull
+    @NotEmpty(message = "countryFrom should not be blank")
     private String countryFrom;
 
-    @NonNull
+    @NotEmpty(message = "votedFor should not be blank")
     private String votedFor;
 }
 

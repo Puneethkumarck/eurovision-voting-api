@@ -26,7 +26,6 @@ public class Vote {
 
     private String votingYear;
 
-
     public Vote(String countryFrom, String votedFor, String votingYear) {
         this.countryFrom = countryFrom;
         this.votedFor = votedFor;

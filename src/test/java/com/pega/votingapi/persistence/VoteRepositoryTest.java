@@ -26,7 +26,6 @@ class VoteRepositoryTest {
         assertThat(topThreeCountries.get().get(2), is("Romania"));
     }
 
-
     @Test
     void findTopThreeVotesNotFound() {
         Optional<List<String>> topThreeCountries = voteRepository.findTopThreeVotes("2000");

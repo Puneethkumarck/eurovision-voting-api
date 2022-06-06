@@ -36,10 +36,10 @@ public class VotingServiceImpl implements VotingService{
     @Override
     public Map<String,String> retrieveTopThreeCountryWithMaximumVotes(String year) {
         Optional<List<String>> response = voteRepository.findTopThreeVotes(year);
-        Map<String,String> topThreeVoteResponse = null;
-        if (response.isPresent()) {
+        Map<String,String> topThreeVoteResponse = Collections.emptyMap();
+        if (response.isPresent())
             topThreeVoteResponse = buildResponse(response.get());
-        }
+
         return topThreeVoteResponse;
     }
 
@@ -47,10 +47,10 @@ public class VotingServiceImpl implements VotingService{
     @Override
     public Map<String,String> retrieveTopThreeFavSongs(String year,String country){
         Optional<List<String>> response = voteRepository.findTopThreeFavSongs(year,country);
-        Map<String,String> topThreeVoteResponse = null;
-        if (response.isPresent()) {
+        Map<String,String> topThreeVoteResponse = Collections.emptyMap();
+        if (response.isPresent())
             topThreeVoteResponse = buildResponse(response.get());
-        }
+
         return topThreeVoteResponse;
     }
 

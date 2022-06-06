@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.Map;
 
 
@@ -22,13 +24,13 @@ public class VoteController {
     }
 
     @PostMapping(value = "/",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoteRequest> createVote(@RequestBody VoteRequest voteRequest){
+    public ResponseEntity<VoteRequest> createVote(@RequestBody @Valid VoteRequest voteRequest){
         Vote _vote = voteService.createVote(voteRequest);
         return  new ResponseEntity<>(VoteRequest.of(_vote.getCountryFrom(),_vote.getVotedFor()), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{year}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getTopThreeVotes(@PathVariable String year){
+    public ResponseEntity<Map<String,String>> getTopThreeVotes(@PathVariable @NotBlank String year){
         Map<String,String>  topThreeVoteResponse = voteService.retrieveTopThreeCountryWithMaximumVotes(year);
         if(ObjectUtils.isEmpty(topThreeVoteResponse))
             throw new ResponseStatusException(
@@ -37,7 +39,7 @@ public class VoteController {
     }
 
     @GetMapping(value = "/{year}/{country}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getTopThreeFavSongs(@PathVariable String year, @PathVariable String country){
+    public ResponseEntity<Map<String,String>> getTopThreeFavSongs(@PathVariable @NotBlank String year, @PathVariable @NotBlank String country){
         Map<String,String> topThreeVoteResponse = voteService.retrieveTopThreeFavSongs(year,country);
         if(ObjectUtils.isEmpty(topThreeVoteResponse))
             throw new ResponseStatusException(
