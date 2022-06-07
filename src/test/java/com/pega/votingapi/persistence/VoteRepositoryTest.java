@@ -21,9 +21,6 @@ class VoteRepositoryTest {
     void findTopThreeVotes() {
         Optional<List<String>> topThreeCountries = voteRepository.findTopThreeVotes("2022");
         assertThat(topThreeCountries.get().size(), is(3));
-        assertThat(topThreeCountries.get().get(0), is("Germany"));
-        assertThat(topThreeCountries.get().get(1), is("Italy"));
-        assertThat(topThreeCountries.get().get(2), is("Romania"));
     }
 
     @Test
@@ -34,16 +31,13 @@ class VoteRepositoryTest {
 
     @Test
     void findTopThreeFavSongs() {
-        Optional<List<String>> topThreeCountries = voteRepository.findTopThreeFavSongs("2022", "Germany");
+        Optional<List<String>> topThreeCountries = voteRepository.findTopThreeFavSongs("2022", "France");
         assertThat(topThreeCountries.get().size(), is(3));
-        assertThat(topThreeCountries.get().get(0), is("France"));
-        assertThat(topThreeCountries.get().get(1), is("Belgium"));
-        assertThat(topThreeCountries.get().get(2), is("Netherlands"));
     }
 
     @Test
     void findTopThreeFavSongsNotFound() {
-        Optional<List<String>> topThreeCountries = voteRepository.findTopThreeFavSongs("202", "Germany");
+        Optional<List<String>> topThreeCountries = voteRepository.findTopThreeFavSongs("202", "France");
         assertThat(topThreeCountries.get().size(), is(0));
     }
 

@@ -57,7 +57,7 @@ public class VotingServiceImpl implements VotingService{
 
 
     Map<String,String> buildResponse(List<String> responseList){
-        Map<String,String> responseMap = new HashMap<>();
+        Map<String,String> responseMap = new LinkedHashMap<>();
         for(int i=0;i<responseList.size();i++){
             responseMap.put(topThree[i],responseList.get(i));
         }

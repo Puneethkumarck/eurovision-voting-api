@@ -70,3 +70,18 @@ helm upgrade -i pegarelease . (incremental deployments)
 
 ![img.png](images/restdoc1.png)
 ![img.png](images/restdoc2.png)
+
+
+## Sql Queries and Results with initial data setup
+
+```
+SELECT VOTED_FOR,count(VOTED_FOR) as total FROM VOTE WHERE VOTING_YEAR = '2022' group by VOTED_FOR order by count(VOTED_FOR) DESC limit 3
+
+SELECT VOTED_FOR , count(VOTED_FOR) as total FROM VOTE WHERE VOTING_YEAR ='2022' and COUNTRY_FROM='Netherlands' group by VOTED_FOR order by count(VOTED_FOR) DESC limit 3
+```
+
+### Top three countries with maximum votes for given year
+![img.png](images/topthreevotes_2022.png)
+
+### Top three Fav songs from each country and given year
+![img.png](images/Favsongs_from_eachcountry.png)
