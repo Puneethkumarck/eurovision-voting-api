@@ -72,7 +72,49 @@ class VoteControllerTest {
         //then
         mockMvc.perform(post("/{year}","2022").contentType(MediaType.APPLICATION_JSON).
                 content(objectMapper.writeValueAsString(voteRequest))).andDo(print()).
-                andExpect(status().isBadRequest()).andDo(document("createVote_404"));
+                andExpect(status().isBadRequest()).andDo(document("createVote_400"));
+    }
+
+    @Test
+    void createVote_InvalidArgument_year() throws Exception {
+        //given
+        VoteRequest voteRequest=VoteRequest.of("Netherlands","Belgium","2022");
+
+        //when
+        when(voteService.createVote(voteRequest)).thenReturn(vote);
+
+        //then
+        mockMvc.perform(post("/{year}","pega").contentType(MediaType.APPLICATION_JSON).
+                        content(objectMapper.writeValueAsString(voteRequest))).andDo(print()).
+                andExpect(status().isBadRequest()).andDo(document("createVote_400"));
+    }
+
+    @Test
+    void createVote_InvalidArgument_countryfrom() throws Exception {
+        //given
+        VoteRequest voteRequest=VoteRequest.of("Netherl999ands","Belgium","2022");
+
+        //when
+        when(voteService.createVote(voteRequest)).thenReturn(vote);
+
+        //then
+        mockMvc.perform(post("/{year}","2022").contentType(MediaType.APPLICATION_JSON).
+                        content(objectMapper.writeValueAsString(voteRequest))).andDo(print()).
+                andExpect(status().isBadRequest()).andDo(document("createVote_400"));
+    }
+
+    @Test
+    void createVote_InvalidArgument_votedFor() throws Exception {
+        //given
+        VoteRequest voteRequest=VoteRequest.of("Netherlands","Belg999ium","2022");
+
+        //when
+        when(voteService.createVote(voteRequest)).thenReturn(vote);
+
+        //then
+        mockMvc.perform(post("/{year}","2022").contentType(MediaType.APPLICATION_JSON).
+                        content(objectMapper.writeValueAsString(voteRequest))).andDo(print()).
+                andExpect(status().isBadRequest()).andDo(document("createVote_400"));
     }
 
     @Test

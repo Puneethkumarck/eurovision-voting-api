@@ -7,14 +7,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.util.Map;
 
 
 @RestController
+@Validated
 public class VoteController {
 
     private VotingService voteService;
@@ -24,14 +26,14 @@ public class VoteController {
     }
 
     @PostMapping(value = "/{year}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoteRequest> createVote(@PathVariable @NotBlank String year,@RequestBody @Valid VoteRequest voteRequest){
+    public ResponseEntity<VoteRequest> createVote(@Pattern(regexp = "\\d{4}", message = "Year should have 4 digits only") @PathVariable String year, @RequestBody @Valid VoteRequest voteRequest){
         voteRequest.setVotingYear(year);
         Vote _vote = voteService.createVote(voteRequest);
         return  new ResponseEntity<>(VoteRequest.of(_vote.getCountryFrom(),_vote.getVotedFor(),_vote.getVotingYear()), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{year}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getTopThreeVotes(@PathVariable @NotBlank String year){
+    public ResponseEntity<Map<String,String>> getTopThreeVotes(@Pattern(regexp = "\\d{4}", message = "Year should have 4 digits only") @PathVariable String year){
         Map<String,String>  topThreeVoteResponse = voteService.retrieveTopThreeCountryWithMaximumVotes(year);
         if(ObjectUtils.isEmpty(topThreeVoteResponse))
             throw new ResponseStatusException(
@@ -40,7 +42,7 @@ public class VoteController {
     }
 
     @GetMapping(value = "/{year}/{country}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getTopThreeFavSongs(@PathVariable @NotBlank String year, @PathVariable @NotBlank String country){
+    public ResponseEntity<Map<String,String>> getTopThreeFavSongs(@Pattern(regexp = "\\d{4}", message = "Year should have 4 digits only") @PathVariable String year, @PathVariable @NotBlank String country){
         Map<String,String> topThreeVoteResponse = voteService.retrieveTopThreeFavSongs(year,country);
         if(ObjectUtils.isEmpty(topThreeVoteResponse))
             throw new ResponseStatusException(

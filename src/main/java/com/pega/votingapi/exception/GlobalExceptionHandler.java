@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.Set;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     ValidationErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
@@ -21,6 +25,19 @@ public class GlobalExceptionHandler {
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
             error.getViolations().add(
                     new Violation(fieldError.getField(), fieldError.getDefaultMessage()));
+        }
+        return error;
+    }
+
+    @ExceptionHandler(value = { ConstraintViolationException.class })
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ValidationErrorResponse handle(ConstraintViolationException e) {
+        ValidationErrorResponse error = new ValidationErrorResponse();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        for (ConstraintViolation<?> violation : violations ) {
+            error.getViolations().add(
+                    new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
         }
         return error;
     }
