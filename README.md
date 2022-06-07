@@ -1,3 +1,5 @@
+[![CI](https://github.com/Puneethkumarck/eurovision-voting-api/actions/workflows/main.yml/badge.svg)](https://github.com/Puneethkumarck/eurovision-voting-api/actions/workflows/main.yml)
+
 # eurovision-voting-api
 
 Assumptions
@@ -7,9 +9,11 @@ Assumptions
 * Build 3 client facing endpoints as per functional requirements
 * Build Service and repository layers to fetch data and perform business logic
 * Write tests for each layer (Web/service/repository)
+* Add Input validation and exception handlers
 * Add API documentation with Spring Rest Docs
 * Add Docker file to create docker image and deploy in a kubernetes env
 * Create an helm chart to deploy voting app (which contains K8s Manifests)
+* No Specific requirements for API security
 
 ### Pre requisite installation
 
