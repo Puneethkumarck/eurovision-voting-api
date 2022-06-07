@@ -7,6 +7,6 @@ CREATE TABLE VOTE (
   VOTING_YEAR VARCHAR(5) NOT NULL
 );
 
-create index vote_year_index on VOTE(VOTING_YEAR);
+create index votingyear_index on VOTE(VOTING_YEAR);
 
-create index votedfor_year_index on VOTE(VOTING_YEAR, VOTED_FOR);
+create index year_countryfrom_index on VOTE(VOTING_YEAR, COUNTRY_FROM);
