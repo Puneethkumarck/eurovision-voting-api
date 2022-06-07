@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
+
 public class VoteRequest {
 
     @NotEmpty(message = "countryFrom should not be blank")
@@ -15,5 +16,7 @@ public class VoteRequest {
 
     @NotEmpty(message = "votedFor should not be blank")
     private String votedFor;
+
+    private String votingYear;
 }
 

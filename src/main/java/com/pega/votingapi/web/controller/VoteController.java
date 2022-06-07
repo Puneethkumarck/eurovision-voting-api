@@ -23,10 +23,11 @@ public class VoteController {
         this.voteService = voteService;
     }
 
-    @PostMapping(value = "/",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<VoteRequest> createVote(@RequestBody @Valid VoteRequest voteRequest){
+    @PostMapping(value = "/{year}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<VoteRequest> createVote(@PathVariable @NotBlank String year,@RequestBody @Valid VoteRequest voteRequest){
+        voteRequest.setVotingYear(year);
         Vote _vote = voteService.createVote(voteRequest);
-        return  new ResponseEntity<>(VoteRequest.of(_vote.getCountryFrom(),_vote.getVotedFor()), HttpStatus.CREATED);
+        return  new ResponseEntity<>(VoteRequest.of(_vote.getCountryFrom(),_vote.getVotedFor(),_vote.getVotingYear()), HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{year}",produces = MediaType.APPLICATION_JSON_VALUE)

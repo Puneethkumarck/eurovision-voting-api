@@ -72,6 +72,7 @@ App is deployed in heroku and available under https://eurovision-voting-api.hero
 
 ![img.png](images/restdoc1.png)
 ![img.png](images/restdoc2.png)
+![img.png](images/restdoc3.png)
 
 
 ## Sql Queries and Results with initial data setup
@@ -87,3 +88,5 @@ SELECT VOTED_FOR , count(VOTED_FOR) as total FROM VOTE WHERE VOTING_YEAR ='2022'
 
 ### Top three Fav songs from each country and given year
 ![img.png](images/Favsongs_from_eachcountry.png)
+
+<embed src="/src/main/asciidoc/index.pdf" type="application/pdf">

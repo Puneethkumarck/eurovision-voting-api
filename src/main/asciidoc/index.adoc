@@ -1,6 +1,6 @@
 = Spring REST Docs for VotingAPI
 
-This is an example output for a service running at http://localhost:8080/votes
+This is an example output for a service running at  https://eurovision-voting-api.herokuapp.com/votes
 
 .CreateVote Request
 include::{snippets}/createVote/http-request.adoc[]
@@ -19,3 +19,23 @@ include::{snippets}/getTopThreeFavSongs/http-request.adoc[]
 
 .GetTopThreeFavSongs Response
 include::{snippets}/getTopThreeFavSongs/http-response.adoc[]
+
+
+.CreateVote_404 Request
+include::{snippets}/createVote_404/http-request.adoc[]
+
+.CreateVote_400 Response
+include::{snippets}/createVote_404/http-response.adoc[]
+
+.GetTopThreeCountryWithMaxiumVote_404 Request
+include::{snippets}/getTopThreeCountryWithMaxiumVote_404/http-request.adoc[]
+
+.GetTopThreeCountryWithMaxiumVote_404 Response
+include::{snippets}/getTopThreeCountryWithMaxiumVote_404/http-response.adoc[]
+
+.getTopThreeFavSongs_404 Request
+include::{snippets}/getTopThreeFavSongs_404/http-request.adoc[]
+
+.getTopThreeFavSongs_404 Response
+include::{snippets}/getTopThreeFavSongs_404/http-response.adoc[]
+

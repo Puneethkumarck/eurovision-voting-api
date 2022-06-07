@@ -38,22 +38,25 @@ class VoteControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private final Vote vote = Vote.builder().countryFrom("Netherlands").votedFor("Belgium").build();
+    private final Vote vote = Vote.builder().countryFrom("Netherlands").votedFor("Belgium").votingYear("2022").build();
 
     private final Map<String,String> topThreeResponse = Map.of("first","Germany","Second",
             "Italy","third","France");
+
+    private final Map<String,String> topThreeFavSongResponse = Map.of("first","Netherlands","Second",
+            "France","third","Belgium");
 
     @Test
     void createVote() throws Exception {
 
         //given
-        VoteRequest voteRequest=VoteRequest.of("Netherlands","Belgium");
+        VoteRequest voteRequest=VoteRequest.of("Netherlands","Belgium","2022");
 
         //when
         when(voteService.createVote(voteRequest)).thenReturn(vote);
 
         //then
-        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).
+        mockMvc.perform(post("/{year}","2022").contentType(MediaType.APPLICATION_JSON).
                 content(objectMapper.writeValueAsString(voteRequest))).andDo(print()).andExpect(status().isCreated()).andDo(document("createVote"));
     }
 
@@ -61,15 +64,15 @@ class VoteControllerTest {
     @Test
     void createVote_InvalidArgument() throws Exception {
         //given
-        VoteRequest voteRequest=VoteRequest.of("","");
+        VoteRequest voteRequest=VoteRequest.of("","","");
 
         //when
         when(voteService.createVote(voteRequest)).thenReturn(vote);
 
         //then
-        mockMvc.perform(post("/").contentType(MediaType.APPLICATION_JSON).
+        mockMvc.perform(post("/{year}","2022").contentType(MediaType.APPLICATION_JSON).
                 content(objectMapper.writeValueAsString(voteRequest))).andDo(print()).
-                andExpect(status().isBadRequest()).andDo(document("createVote"));
+                andExpect(status().isBadRequest()).andDo(document("createVote_404"));
     }
 
     @Test
@@ -92,7 +95,7 @@ class VoteControllerTest {
 
         //then
         mockMvc.perform(get("/2022").contentType(MediaType.APPLICATION_JSON)).
-                andDo(print()).andExpect(status().isNotFound()).andDo(document("getTopThreeCountryWithMaxiumVote"));
+                andDo(print()).andExpect(status().isNotFound()).andDo(document("getTopThreeCountryWithMaxiumVote_404"));
     }
 
 
@@ -100,7 +103,7 @@ class VoteControllerTest {
     void getTopThreeFavSongs() throws Exception {
 
         //when
-        when(voteService.retrieveTopThreeFavSongs(anyString(),anyString())).thenReturn(topThreeResponse);
+        when(voteService.retrieveTopThreeFavSongs(anyString(),anyString())).thenReturn(topThreeFavSongResponse);
 
         //then
         mockMvc.perform(get("/2022/Netherlands").contentType(MediaType.APPLICATION_JSON)).
@@ -112,10 +115,10 @@ class VoteControllerTest {
     void getTopThreeFavSongs_notfound() throws Exception {
 
         //when
-        when(voteService.retrieveTopThreeFavSongs("","")).thenReturn(topThreeResponse);
+        when(voteService.retrieveTopThreeFavSongs("","")).thenReturn(topThreeFavSongResponse);
 
         //then
         mockMvc.perform(get("/2022/Netherlands").contentType(MediaType.APPLICATION_JSON)).
-                andDo(print()).andExpect(status().isNotFound()).andDo(document("getTopThreeFavSongs"));
+                andDo(print()).andExpect(status().isNotFound()).andDo(document("getTopThreeFavSongs_404"));
     }
 }

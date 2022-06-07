@@ -16,7 +16,7 @@ class VoteServiceImplTest {
 
     @Test
     void createVote() {
-        VoteRequest voteRequest = VoteRequest.of("Netherlands","Sweden");
+        VoteRequest voteRequest = VoteRequest.of("Netherlands","Sweden","2022");
         Vote vote=votingService.createVote(voteRequest);
         assertNotNull(vote);
     }

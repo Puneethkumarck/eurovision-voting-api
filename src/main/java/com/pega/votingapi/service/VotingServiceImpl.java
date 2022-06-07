@@ -27,7 +27,7 @@ public class VotingServiceImpl implements VotingService{
     public Vote createVote(VoteRequest voteRequest) {
         Vote voteTableRequest = Vote.builder().countryFrom
                         (voteRequest.getCountryFrom()).
-                votedFor(voteRequest.getVotedFor()).votingYear(String.valueOf(LocalDate.now().getYear())).build();
+                votedFor(voteRequest.getVotedFor()).votingYear(voteRequest.getVotingYear()).build();
 
         return voteRepository.save(voteTableRequest);
     }
