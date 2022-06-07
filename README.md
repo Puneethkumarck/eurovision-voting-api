@@ -63,6 +63,8 @@ helm upgrade -i pegarelease . (incremental deployments)
 
 ## Postman
 
+App is deployed in heroku and available under https://eurovision-voting-api.herokuapp.com
+
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/685178-9a661b0a-87f7-4b9e-a6c2-67834043ed0a?action=collection%2Ffork&collection-url=entityId%3D685178-9a661b0a-87f7-4b9e-a6c2-67834043ed0a%26entityType%3Dcollection%26workspaceId%3De03b2ab3-447a-4a5f-8818-be163b36a6e7)
 
 
