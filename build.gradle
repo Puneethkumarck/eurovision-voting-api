@@ -44,11 +44,3 @@ tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
 }
-
-bootJar {
-	archiveClassifier.set('boot')
-}
-
-jar {
-	archiveClassifier.set('')
-}
