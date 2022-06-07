@@ -44,3 +44,5 @@ tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
 }
+
+jar.archiveName="eurovision-voting-api.jar"
