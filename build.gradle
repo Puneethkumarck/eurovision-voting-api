@@ -45,8 +45,10 @@ tasks.named('asciidoctor') {
 	dependsOn test
 }
 
+bootJar {
+	archiveClassifier.set('boot')
+}
+
 jar {
-	manifest {
-		attributes 'Main-Class': 'com.pega.votingapi.VotingApiApplication'
-	}
+	archiveClassifier.set('')
 }
