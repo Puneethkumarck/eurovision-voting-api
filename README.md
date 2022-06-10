@@ -1,4 +1,11 @@
 [![CI](https://github.com/Puneethkumarck/eurovision-voting-api/actions/workflows/main.yml/badge.svg)](https://github.com/Puneethkumarck/eurovision-voting-api/actions/workflows/main.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Puneethkumarck_eurovision-voting-api&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Puneethkumarck_eurovision-voting-api)
 
 # eurovision-voting-api
 
