@@ -50,8 +50,6 @@ tasks.jar {
 	enabled = false
 }
 
-project.tasks['sonarqube'].dependsOn jacocoTestReport
-
 jacocoTestReport {
 	executionData(test, integration)
 	reports {
@@ -60,6 +58,8 @@ jacocoTestReport {
 		xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
 	}
 }
+
+project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 sonarqube {
 	properties {
