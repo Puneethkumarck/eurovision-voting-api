@@ -20,7 +20,7 @@ Assumptions
 * Add API documentation with Spring Rest Docs
 * Add Docker file to create docker image and deploy in a kubernetes env
 * Create an helm chart to deploy voting app (which contains K8s Manifests)
-* No Specific requirements for API security
+* No Specific requirements for API security.
 
 ### Pre requisite installation
 
