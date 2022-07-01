@@ -51,7 +51,7 @@ Build application which produces snapshot Jar
 
 Build docker image 
 
-docker build -t pega/votingapi:v1 .
+docker build -t api/votingapi:v1 .
 ```
 
 ### Run
@@ -64,8 +64,8 @@ With Docker/Helm
 
 helm template charts
 helm lint charts
-helm install pegarelease charts
-helm upgrade -i pegarelease . (incremental deployments)
+helm install votingapirelease charts
+helm upgrade -i votingapirelease . (incremental deployments)
 ```
 
 ## Postman
